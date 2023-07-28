@@ -1,0 +1,710 @@
+:root {
+  --ff-sans: 'IBM Plex Sans', sans-serif;
+  --ff-serif: 'IBM Plex Serif', serif;
+
+  /* small screen font-sizes */
+  --fs-200: 0.75rem;
+  --fs-300: 1rem;
+  --fs-400: 1.25rem;
+  --fs-500: 1.375rem;
+  --fs-600: 1.75rem;
+  --fs-900: 2.125rem;
+
+  --fw-200: 200;
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-700: 700;
+
+  --clr-neutral-100: #fff;
+  --clr-neutral-200: #eef1f6;
+  --clr-neutral-300: #a9afbc;
+  --clr-neutral-400: #737b8c;
+  --clr-neutral-500: #434956;
+  --clr-neutral-900: #020203;
+
+  --clr-primary-300: #f3f7ff;
+  --clr-primary-400: #8ea8da;
+
+  --clr-nav-a: var(--clr-neutral-100);
+  --clr-nav-bg: var(--clr-neutral-900);
+
+  --br: 1rem;
+}
+
+/* large screen font-sizes */
+@media (min-width: 40em) {
+  :root {
+    --fs-500: 1.75rem;
+    --fs-600: 2.125rem;
+    --fs-900: 4.25rem;
+
+    --clr-nav-a: var(--clr-neutral-900);
+    --clr-nav-bg: none;
+  }
+}
+
+/* reset */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  line-height: 1;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+/* Esse reset de button pode fazer parte do reset, ou pode ser configurado quando 
+necessário, como mais abaixo */
+/* button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+} */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* Esse border-radius não faria parte do reset, mas com o todas as imgs desse projeto tem um
+  border-radius e esse seletor já foi usado aqui em cima, faz sentido colocar isso aqui */
+  border-radius: var(--br);
+}
+
+ol[class],
+ul[class] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-400);
+  line-height: 1.3;
+  padding: 1.5rem;
+}
+
+/* typography */
+
+h1,
+h2,
+h3,
+.section-subtitle,
+.text-serif {
+  font-family: var(--ff-serif);
+  font-weight: var(--fw-200);
+}
+
+a {
+  text-decoration: none;
+  font-weight: var(--fw-700);
+  color: var(--clr-neutral-900);
+}
+
+a:hover,
+a:focus {
+  color: var(--clr-primary-400);
+}
+
+.text-500 {
+  font-size: var(--fs-500);
+}
+
+.page-title {
+  font-size: var(--fs-900);
+}
+
+.page-intro {
+  font-size: var(--fs-600);
+}
+
+.section-title {
+  font-size: var(--fs-600);
+  color: var(--clr-neutral-400);
+}
+
+.section-subtitle {
+  font-size: var(--fs-600);
+}
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  background: 0;
+  position: relative;
+  font-family: var(--ff-sans);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-700);
+  text-decoration: none;
+  color: var(--clr-neutral-900);
+}
+
+.btn::after {
+  content: '\203A';
+  margin-left: 1em;
+  font-weight: var(--fw-300);
+}
+
+.btn:hover,
+.btn:focus {
+  color: var(--clr-primary-400);
+}
+
+/* general layout */
+
+section {
+  margin: 0 auto;
+  padding: 2.5rem 0;
+}
+
+@media (min-width: 40em) {
+  section {
+    padding: 3.5rem 0;
+    max-width: 80rem;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 50rem;
+}
+
+.flow-content > * + * {
+  margin-top: var(--flow-spacer, 1em);
+}
+
+.xl-space {
+  margin-top: 5rem;
+}
+
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Ao inves do gap acima, pode-se usar o seletor abaixo */
+/* .split > * + * {
+  margin: 4rem 0 0 0;
+} */
+
+.split > * {
+  flex-basis: 100%;
+}
+
+@media (min-width: 40em) {
+  .split {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  /* Caso o gap não seja utilizado, tem que se usar os seletores abaixo */
+  /* .split {
+    flex-direction: row;
+  }
+
+  .split > * + * {
+    margin: 0 0 0 2.5rem;
+  } */
+}
+
+/* general styling */
+
+.bg-primary-300 {
+  background-color: var(--clr-primary-300);
+  border-radius: var(--br);
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+/* components */
+
+/* primary header */
+
+.primary-header {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  min-height: 50vh;
+  background-color: var(--clr-primary-400);
+  background-size: cover;
+  border-radius: var(--br);
+}
+
+.primary-header .container {
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.primary-header .container > * {
+  width: 12ch;
+}
+
+.page-home .primary-header {
+  background-image: url(img/hero.jpg);
+  background-position: center center;
+}
+
+.page-blog .primary-header {
+  background-image: url(img/blog.jpg);
+  background-position: center left;
+}
+
+.page-article .primary-header {
+  position: relative;
+  overflow: hidden;
+  background-image: url(img/article.jpg);
+  background-position: left center;
+  z-index: 0;
+}
+
+.page-article .primary-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 25%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+  z-index: -1;
+}
+
+@media (min-width: 40em) {
+  .primary-header {
+    margin: 0 auto;
+    max-width: 80rem;
+  }
+}
+
+.primary-nav {
+  position: fixed;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  font-family: var(--ff-serif);
+  background-color: var(--clr-neutral-900);
+  border-radius: var(--br);
+}
+
+.primary-nav ul {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0.5em 0;
+}
+
+.primary-nav li {
+  line-height: 1;
+  margin-bottom: 0.2em;
+}
+
+.primary-nav a {
+  color: var(--clr-neutral-200);
+}
+
+@media (min-width: 40em) {
+  .primary-nav {
+    position: static;
+    background: transparent;
+  }
+
+  .primary-nav a {
+    color: inherit;
+  }
+
+  .primary-header__inner {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 1em 0;
+  }
+
+  .primary-nav ul {
+    gap: 3em;
+    padding: 0;
+  }
+
+  .primary-nav li {
+    line-height: 0;
+    margin-bottom: 0;
+  }
+}
+
+.secondary-navigation {
+  display: flex;
+  margin: 2rem 0;
+  align-items: center;
+}
+
+/* A solução abaixo para empurrar o botao de subscribe totalmente para a direita é um pouco frágil pq,
+caso o botão seja removido, isso vai fazer com que todo o menu/lista de botões de categorias seja empurrada
+para a direita */
+/* .secondary-navigation > *:last-child {
+  margin-left: auto;
+} */
+
+/* Já qualquer um dos seletores abaixo pode ser usado com mais segurança, pois ele especificamente miram
+no botão de subscribe e esse botão não está lá, então esse código não faz nada. Muitas vezes o 
+star selector * é muito bom e versátil, mas às vezes é melhor ser específico */
+/* .secondary-navigation > a {
+.secondary-navigation > a.btn {
+.secondary-navigation > .btn.last-child { */
+.secondary-navigation > a:last-child {
+  margin-left: auto;
+}
+
+.categories {
+  display: flex;
+  gap: 2rem;
+}
+
+.categories button {
+  font-size: var(--fs-200);
+  text-transform: uppercase;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+/* articles */
+
+.article-preview {
+  position: relative;
+  z-index: 0;
+}
+
+.article-preview a {
+  display: block;
+  text-decoration: none;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-300);
+}
+
+.article-preview a:hover,
+.article-preview a:focus {
+  color: inherit;
+}
+
+.article-preview a::before {
+  --offset: -1em;
+
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: var(--offset);
+  right: var(--offset);
+  bottom: var(--offset);
+  left: var(--offset);
+  border-radius: var(--br);
+  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.15);
+  transition: opacity 350ms ease;
+  opacity: 0;
+}
+
+.article-preview:hover a::before {
+  opacity: 1;
+}
+
+.article-preview h3 {
+  font-size: var(--fs-500);
+}
+
+.article-preview img {
+  width: 100%;
+  height: 12.5rem;
+  object-fit: cover;
+}
+
+.article-preview .info {
+  display: flex;
+  gap: 2em;
+  font-size: var(--fs-200);
+  font-weight: var(--fw-400);
+  color: var(--clr-neutral-400);
+}
+
+/* Ao invés de gap, poderia usar o seletor a seguir.
+Ele seleciona qualquer coisa que seja diretamente o first child de .info */
+/* .article-preview .info > *:first-child {
+  margin-right: 2em;
+} */
+
+.article-preview > p {
+  font-family: var(--ff-sans);
+  font-weight: var(--fw-300);
+}
+
+/* call-to-action */
+
+.call-to-action form {
+  /* Aqui, poderia tanto usar esse margin-top quando um .flow-content no container dentro do call-to-action */
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  gap: 3rem;
+}
+
+.call-to-action form > div {
+  flex-basis: 100%;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+
+.call-to-action input {
+  width: 100%;
+  font: inherit;
+  /* Ao inves de escrever todos esse border-posição, posso só escrever border: 0 e depois sobrescrever ele */
+  /* border-top: none;
+  border-right: none;
+  border-left: none; */
+  border: 0;
+  border-bottom: 2px solid var(--clr-neutral-300);
+}
+
+.call-to-action input:focus {
+  border-color: var(--clr-primary-400);
+  border-width: 4px;
+}
+
+.call-to-action input::placeholder {
+  color: var(--clr-neutral-300);
+  opacity: 1;
+}
+
+.call-to-action label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-400);
+}
+
+.call-to-action button {
+  align-self: flex-start;
+}
+
+@media (min-width: 40em) {
+  .call-to-action form {
+    flex-direction: row;
+  }
+
+  .call-to-action button {
+    align-self: center;
+  }
+}
+
+/* footer */
+
+.primary-footer__inner {
+  padding: 3em 0;
+  margin: 2em 0;
+  --border: 1px solid var(--clr-neutral-200);
+  border-top: var(--border);
+  border-bottom: var(--border);
+}
+
+footer {
+  padding-bottom: 1em;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 4em;
+}
+/* Analogamente, ao invés do gap acima, pode-se usar o seletor abaixo */
+/* .footer-nav > *:first-child {
+  margin-right: 4em;
+} */
+
+.footer-nav a {
+  font-size: var(--fs-300);
+}
+
+.footer-social {
+  display: flex;
+  gap: 2em;
+}
+
+.footer-social a {
+  font-weight: var(--fw-200);
+}
+
+/* homepage styles */
+
+.intro {
+  --flow-spacer: 2em;
+}
+
+/* blog page styles */
+
+.article-grid {
+  display: grid;
+  gap: 3em 2em;
+  grid-template-columns: repeat(6, 1fr);
+
+  /* Solução usando grid-template-areas */
+  /* grid-template-areas:
+    'one'
+    'two'
+    'three'
+    'four'
+    'five'
+    'six'
+    'seven'
+    'eight'; */
+}
+
+.article-grid > * {
+  grid-column: 1 / -1;
+}
+
+/* Solução usando grid-template-areas */
+/* .article-preview {
+}
+
+.article-grid > *:nth-child(1) {
+  grid-area: one;
+}
+
+.article-grid > *:nth-child(2) {
+  grid-area: two;
+}
+
+.article-grid > *:nth-child(3) {
+  grid-area: three;
+}
+
+.article-grid > *:nth-child(4) {
+  grid-area: four;
+}
+
+.article-grid > *:nth-child(5) {
+  grid-area: five;
+}
+
+.article-grid > *:nth-child(6) {
+  grid-area: six;
+}
+
+.article-grid > *:nth-child(7) {
+  grid-area: seven;
+}
+
+.article-grid > *:nth-child(8) {
+  grid-area: eight;
+} */
+
+/* Isso mantém o featured article em telas intermediarias, mas modifica o layout do resto dos artigos */
+@media (min-width: 30em) {
+  .article-grid > *:not(:first-child) {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 40em) {
+  .article-grid > *:first-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Lembrando: o seletor > busca todos os filhos diretos do elemento-pai. Logo, o seletor
+  abaixo pega o primeiro article-preview dentro de article-grid e estiliza ele de um jeito especifico */
+  .article-grid > .article-preview:first-child {
+    /* O motivo de se usar grid aqui é para não modificar o markup dos articles. Caso fosse usado flex,
+    o markup teria que ser modificado para wrap os elementos textuais em uma div. Já grid permite usar
+    exatamente o mesmo markup dos outros artigos. */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr min-content 1fr;
+    gap: 1em 2em;
+  }
+
+  .article-grid > .article-preview:first-child > img {
+    grid-row: span 3;
+    height: 17.5rem;
+  }
+
+  .article-grid > .article-preview:first-child > h3 {
+    margin-top: auto;
+  }
+
+  /* A vantagem de usar o seletor abaixo é que assim qualquer elemento que fosse colocado no article-grid
+  seria encaixado no grid, ie.: um elemento .advertisement. Caso o seletor fosse .article-preview, isso 
+  não seria possível */
+  .article-grid > *:nth-child(2),
+  .article-grid > *:nth-child(3) {
+    grid-column: span 3;
+  }
+
+  .article-grid > *:nth-child(4),
+  .article-grid > *:nth-child(5),
+  .article-grid > *:nth-child(6) {
+    grid-column: span 2;
+  }
+
+  .article-grid > *:nth-child(7),
+  .article-grid > *:nth-child(8) {
+    grid-column: span 3;
+  }
+
+  /* Solução usando grid-template-areas */
+  /* .article-grid {
+    grid-template-areas:
+      'one one one one one one'
+      'two two two three three three'
+      'four four five five six six'
+      'seven seven seven eight eight eight';
+  } */
+}
+
+/* article page styles */
+
+/* .article-full > p,
+.article-full > img {
+  --flow-spacer: 1.75em;
+} */
+
+/* .article-full.container {
+  max-width: 40rem;
+} */
+
+.article-full {
+  --flow-spacer: 2em;
+
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 40rem;
+}
+
+.article-full {
+  font-weight: var(--fw-400);
+}
